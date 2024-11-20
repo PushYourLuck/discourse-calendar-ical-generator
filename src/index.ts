@@ -3,6 +3,8 @@ export default {
 	async fetch(request, env, ctx): Promise<Response> {
 
 		const calendar = ical({ name: 'Underline Center Events Calendar' });
+		// A method is required for outlook to display event as an invitation
+		calendar.method(ICalCalendarMethod.REQUEST);
 
 		let discourseEventsResponse = await fetch('https://underline.center/discourse-post-event/events.json?include_details=true');
 
@@ -20,20 +22,7 @@ export default {
 			});
 		})
 
-		// A method is required for outlook to display event as an invitation
-		calendar.method(ICalCalendarMethod.REQUEST);
 
-		const startTime = new Date();
-		const endTime = new Date();
-		endTime.setHours(startTime.getHours() + 1);
-		calendar.createEvent({
-			start: startTime,
-			end: endTime,
-			summary: 'Example Event',
-			description: 'It works ;)',
-			location: 'my room',
-			url: 'http://sebbo.net/'
-		});
 
 		let res = new Response(calendar.toString());
 		res.headers.set('Content-Type', 'text/calendar; charset=utf-8');
