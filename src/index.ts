@@ -8,7 +8,7 @@ export default {
 				const html = `<!DOCTYPE html>
 				<body>
 				<h2>Underline Center Calendar</h2>
-				<a href="webcal://feed.underline.center/calendar.ics"><button>Subscribe via your favorite calendar app</button></a>
+				<a href="https://www.google.com/calendar/render?cid=webcal%3A%2F%2Ffeed.underline.center%2Fcalendar.ics"><button>Subscribe via Google Calendar</button></a>
 				<p>If the link doesn't work automatically, you manually import the below the URL into your calendar app.<pre>https://feed.underline.center/calendar.ics</pre></p>
 				</body>`;
 
