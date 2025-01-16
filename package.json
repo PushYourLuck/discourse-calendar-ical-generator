@@ -1,6 +1,6 @@
 {
-  "name": "my-first-worker",
-  "version": "0.0.0",
+  "name": "discourse-calendar-ical-generator",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",

@@ -34,6 +34,7 @@ export default {
 						start: startTime,
 						end: endTime,
 						summary: event.post.topic.title,
+						description: event.url ? `Tickets available at ${event.url}` : `Tickets coming soon'`,
 						location: 'Underline Center, Indiranagar',
 						url: `https://underline.center${event.post.url}`
 					});
