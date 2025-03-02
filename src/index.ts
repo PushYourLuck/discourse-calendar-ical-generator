@@ -6,6 +6,9 @@ export default {
 		switch (url.pathname) {
 			case '/':
 				const html = `<!DOCTYPE html>
+    				<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				</head>
 				<body>
 				<h2>Underline Center Calendar</h2>
 				<a href="https://www.google.com/calendar/render?cid=64jp4d84mrqgphnpq7qkiq3c0jg9sapd%40import.calendar.google.com"><button>Subscribe via Google Calendar</button></a>
