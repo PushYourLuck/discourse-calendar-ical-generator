@@ -21,9 +21,19 @@ export default {
 				});
 
 			case '/calendar.ics':
-				const calendar = ical({ name: 'Underline Center Events Calendar' });
+				const calendar = ical({
+					name: 'Underline Center Events Calendar',
+					description: 'All the upcoming events at Underline Center - a community center for thoughtful, kind, and interesting events.',
+				});
+
 				// A method is required for outlook to display event as an invitation
 				calendar.method(ICalCalendarMethod.REQUEST);
+
+				// Sets the timezone on the calendar
+				calendar.timezone('Asia/Kolkata');
+
+				// Let's the client know where to calendar source is from
+				calendar.source('https://feed.underline.center/calendar.ics');
 
 				let discourseEventsResponse = await fetch('https://underline.center/discourse-post-event/events.json?include_details=true');
 
