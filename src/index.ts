@@ -35,6 +35,9 @@ export default {
 				// Let's the client know where to calendar source is from
 				calendar.source('https://feed.underline.center/calendar.ics');
 
+				// Set refresh-interval (not all clients will honor this, so it's best-effort)
+				calendar.ttl(60 * 60 * 6); // 6 hours
+
 				let discourseEventsResponse = await fetch('https://underline.center/discourse-post-event/events.json?include_details=true');
 
 				let discourseEvents: { events: any[] } = await discourseEventsResponse.json();
