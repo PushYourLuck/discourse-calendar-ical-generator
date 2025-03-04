@@ -29,8 +29,8 @@ export default {
 				// A method is required for outlook to display event as an invitation
 				calendar.method(ICalCalendarMethod.REQUEST);
 
-				// Sets the timezone on the calendar
-				calendar.timezone('Asia/Kolkata');
+				// Sets the timezone on the calendar to UTC (since that's we get from the API)
+				calendar.timezone('UTC');
 
 				// Let's the client know where to calendar source is from
 				calendar.source('https://feed.underline.center/calendar.ics');
@@ -47,7 +47,8 @@ export default {
 					const endTime = new Date(event.ends_at);
 
 					const ticketsLink = event.url ? `Tickets available at ${event.url}` : `Tickets coming soon'`;
-					const description = `More information: https://underline.center${event.post.url}
+					const description = `Details: https://underline.center${event.post.url}
+
 ${ticketsLink}`;
 					calendar.createEvent({
 						start: startTime,
