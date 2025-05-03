@@ -1,4 +1,6 @@
 import ical, { ICalCalendarMethod } from 'ical-generator';
+import { DiscourseEvent } from './type';
+import { transformDiscourseEventToPublicICalEvent } from './transformers';
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
@@ -40,26 +42,10 @@ export default {
 
 				let discourseEventsResponse = await fetch('https://underline.center/discourse-post-event/events.json?include_details=true');
 
-				let discourseEvents: { events: any[] } = await discourseEventsResponse.json();
+				let discourseEvents: { events: DiscourseEvent[] } = await discourseEventsResponse.json();
 
 				discourseEvents.events.forEach((event) => {
-					const startTime = new Date(event.starts_at);
-					const endTime = new Date(event.ends_at);
-
-					const ticketsLink = event.url && event.url == 'tba' ? `Tickets available at ${event.url}` : `Tickets coming soon'`;
-					const description = `Details: https://underline.center${event.post.url}
-
-${ticketsLink}`;
-					calendar.createEvent({
-						id: event.id,
-						start: startTime,
-						end: endTime,
-						summary: event.post.topic.title,
-						description: description,
-						repeating: event.recurrence_rule,
-						location: 'Underline Center, Indiranagar',
-						url: `https://underline.center${event.post.url}`,
-					});
+					calendar.createEvent(transformDiscourseEventToPublicICalEvent(event));
 				});
 
 				let res = new Response(calendar.toString());
