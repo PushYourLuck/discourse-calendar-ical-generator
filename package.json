@@ -17,6 +17,6 @@
     "wrangler": "^4.13.2"
   },
   "dependencies": {
-    "ical-generator": "^8.1.1"
+    "ical-generator": "^9.0.0"
   }
 }
