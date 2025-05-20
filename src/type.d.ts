@@ -36,7 +36,7 @@ export interface Creator {
   avatar_template: string
 }
 
-export interface CustomFields {}
+export interface CustomFields {short_description?: string}
 
 export interface Post {
   id: number

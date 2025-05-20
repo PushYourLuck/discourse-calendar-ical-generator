@@ -8,10 +8,14 @@ export function transformDiscourseEventToPublicICalEvent(
     const startTime = new Date(event.starts_at);
     const endTime = new Date(event.ends_at);
 
+    const shortDescription = event.custom_fields && event.custom_fields.short_description ? event.custom_fields.short_description : '';
     const ticketsLink = event.url && event.url != 'tba' ? `Tickets available at ${event.url}` : `Tickets coming soon`;
-    const description = `Details: https://underline.center${event.post.url}
+    const description = `${shortDescription}
 
-${ticketsLink}`;
+${ticketsLink}
+
+Details: https://underline.center${event.post.url}
+`;
 
     return {
         id: event.id,
