@@ -11,7 +11,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260305.1",
     "typescript": "^5.9.3",
-    "wrangler": "^4.70.0"
+    "wrangler": "^4.73.0"
   },
   "dependencies": {
     "ical-generator": "^10.0.0"
