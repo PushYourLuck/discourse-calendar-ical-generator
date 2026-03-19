@@ -40,7 +40,8 @@ export default {
 				// Set refresh-interval (not all clients will honor this, so it's best-effort)
 				calendar.ttl(60 * 60 * 6); // 6 hours
 
-				let discourseEventsResponse = await fetch('https://underline.center/discourse-post-event/events.json?include_details=true&order=desc');
+				// Get upcoming events starting from 2 weeks ago
+				let discourseEventsResponse = await fetch(`https://underline.center/discourse-post-event/events.json?include_details=true&order=desc&after=${new Date(Date.now() - 7*24*60*60*1000)}`);
 
 				let discourseEvents: { events: DiscourseEvent[] } = await discourseEventsResponse.json();
 
